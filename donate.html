@@ -9,32 +9,106 @@
 <body>
 <div class="concept">Design concept for Voices From the Holy Land &middot; prepared by Sthenos Technologies</div>
 <nav>
-  <a class="brand" href="index.html"><div class="mk serif">V</div><div class="nm">Voices From the Holy Land<small>Interfaith &middot; Non-political &middot; Since 2020</small></div></a>
+  <a class="brand" href="index.html"><img src="assets/logo.svg" class="mk" alt="Voices From the Holy Land"><div class="nm">Voices From the Holy Land<small>Interfaith &middot; Non-political &middot; Since 2020</small></div></a>
   <div class="navlinks"><a href="about.html">About</a><a href="calendar.html">Calendar</a><a href="watch.html">Watch</a><a href="contact.html">Contact</a><a href="donate.html" class="btn active">Donate</a></div>
 </nav>
 
-<div class="banner"><div class="wrap"><div class="eyebrow">Support our work</div><h1 class="serif">Keep the conversation <em>free and open</em></h1><p>We are entirely volunteer-run. Every dollar goes to the films, the technology, and the editing that lets thousands witness these discussions.</p></div></div>
+<div class="banner"><div class="wrap"><div class="eyebrow">Support our work</div><h1 class="serif">Your gift keeps the <em>conversation going</em></h1><p>We are entirely volunteer-run. Every dollar goes to the films, the technology, and the editing that lets thousands witness these discussions, long after the salon ends.</p></div></div>
 
-<section class="pad"><div class="wrap">
-  <div class="tiers">
-    <div class="tier"><div class="amt serif">$25</div><p>Helps caption one salon for accessibility.</p><a href="#" class="btn ghost">Give $25</a></div>
-    <div class="tier"><div class="amt serif">$75</div><p>Covers the editing of one monthly salon.</p><a href="#" class="btn ghost">Give $75</a></div>
-    <div class="tier"><div class="amt serif">$200</div><p>Licenses a documentary film for a screening.</p><a href="#" class="btn">Give $200</a></div>
-    <div class="tier"><div class="amt serif">Other</div><p>Give any amount that is meaningful to you.</p><a href="#" class="btn ghost">Choose amount</a></div>
+<section class="pad"><div class="wrap"><div class="donate-wrap">
+
+  <!-- DONATION ENGINE -->
+  <div class="donate-card">
+    <div class="dtabs">
+      <button class="dtab on" id="tab-monthly" onclick="setFreq('monthly')">Monthly<span class="tagm">Most impactful</span></button>
+      <button class="dtab" id="tab-once" onclick="setFreq('once')">One-time<span class="tagm">A single gift</span></button>
+    </div>
+
+    <div class="amt-grid" id="grid"></div>
+
+    <div class="give-now btn lg" id="giveBtn" onclick="goDonate()">Give <span class="amt-out" id="giveAmt">$25</span> <span id="giveFreq">a month</span></div>
+    <div class="pay-note">Secure checkout &middot; Card, bank, Apple Pay &amp; Google Pay &middot; Tax-deductible</div>
   </div>
-</div></section>
+
+  <!-- TRUST / TRANSPARENCY (the charity:water playbook) -->
+  <div class="dside">
+    <h3 class="serif">Why monthly matters</h3>
+    <p class="lead">A salon happens every single month. Monthly giving is what lets us plan, license films, and say yes to the next conversation without scrambling for funds.</p>
+    <div class="trust">
+      <div class="t"><div class="ic">&bull;</div><p><b>Every dollar is visible.</b> As an all-volunteer effort, your gift pays only for films, technology, captioning, and editing, never overhead.</p></div>
+      <div class="t"><div class="ic">&bull;</div><p><b>It reaches thousands.</b> Each edited salon lives on, freely, for everyone who could not be in the room.</p></div>
+      <div class="t"><div class="ic">&bull;</div><p><b>You can give in seconds.</b> No account, no friction, cancel or change anytime.</p></div>
+      <div class="t"><div class="ic">&bull;</div><p><b>Fully tax-deductible.</b> You will receive a receipt by email the moment you give.</p></div>
+    </div>
+  </div>
+
+</div></div></section>
 
 <section class="coal"><div class="wrap">
   <div><div class="eyebrow" style="margin-bottom:14px;">Where it goes</div><h2 class="serif">Small budget, <b>wide reach.</b></h2></div>
-  <div><p>As an all-volunteer effort, we keep costs lean. Your support pays for the things volunteers cannot donate: film licensing, the Zoom and streaming technology, professional captioning, and the editing that turns each live salon into a lasting, watchable record for the public.</p></div>
+  <div><p>We keep costs lean so your generosity does the maximum good. Your support pays for the things volunteers cannot donate: film licensing, the streaming technology, professional captioning for accessibility, and the editing that turns each live salon into a lasting, watchable record for the public.</p></div>
 </div></section>
 
 <section class="give"><div class="mono serif">V</div><div class="wrap"><div class="eyebrow">Other ways to help</div><h2 class="serif">Give your <em>voice,</em> not only a gift.</h2><p>Become a partner organization, host a local screening, or simply share a salon with someone who needs to see it. Every act of attention is part of the work.</p><div class="cta"><a href="contact.html" class="btn">Become a partner</a><a href="watch.html" class="btn ghost">Share a salon</a></div></div></section>
 
 <footer><div class="wrap">
-  <div><div class="brand"><div class="mk serif">V</div><div class="nm">Voices From the Holy Land</div></div><p class="about">Curated documentary films and honest panel discussions advancing human rights, justice, and peace in the Holy Land.</p></div>
+  <div><div class="brand"><img src="assets/logo.svg" class="mk" alt="Voices From the Holy Land"><div class="nm">Voices From the Holy Land</div></div><p class="about">Curated documentary films and honest panel discussions advancing human rights, justice, and peace in the Holy Land.</p></div>
   <div><h6>Explore</h6><ul><li><a href="about.html">About us</a></li><li><a href="calendar.html">Calendar</a></li><li><a href="watch.html">Watch past salons</a></li><li><a href="contact.html">Resources</a></li></ul></div>
   <div><h6>Connect</h6><ul><li><a href="calendar.html">Join the next salon</a></li><li><a href="contact.html">Become a partner</a></li><li><a href="donate.html">Donate</a></li><li><a href="contact.html">Contact us</a></li></ul></div>
 </div><div class="legal"><span>&copy; 2026 Voices From the Holy Land</span><span>Washington, D.C. Metropolitan Region</span></div></footer>
+
+<script>
+  // NOTE for go-live: replace DONORBOX_URL with the VFHL Donorbox (or Givebutter) campaign URL.
+  // The amount + frequency are passed through so the donor lands pre-filled.
+  var DONORBOX_URL = "https://donorbox.org/voices-from-the-holy-land";
+  var AMOUNTS = {
+    monthly: [
+      {a:10,  i:"Captions a salon for accessibility"},
+      {a:25,  i:"Edits one monthly salon", sel:true},
+      {a:50,  i:"Licenses a documentary film"},
+      {a:100, i:"Sustains a whole salon"}
+    ],
+    once: [
+      {a:50,  i:"Captions a full salon"},
+      {a:150, i:"Edits one salon end to end", sel:true},
+      {a:500, i:"Licenses a film for everyone"},
+      {a:1000,i:"Underwrites an entire month"}
+    ]
+  };
+  var freq = "monthly", amount = 25;
+
+  function renderGrid(){
+    var list = AMOUNTS[freq], html = "";
+    list.forEach(function(o){
+      html += '<button class="amt-btn'+(o.a===amount?' sel':'')+'" onclick="pick('+o.a+')">'
+            + '<span class="a">$'+o.a+'</span><span class="i">'+o.i+'</span></button>';
+    });
+    html += '<div class="amt-custom"><span>$</span><input id="custom" type="number" min="1" placeholder="Other amount" oninput="pickCustom(this.value)"></div>';
+    document.getElementById('grid').innerHTML = html;
+  }
+  function setFreq(f){
+    freq = f;
+    document.getElementById('tab-monthly').classList.toggle('on', f==='monthly');
+    document.getElementById('tab-once').classList.toggle('on', f==='once');
+    var d = AMOUNTS[f].find(function(o){return o.sel;}); amount = d ? d.a : AMOUNTS[f][0].a;
+    renderGrid(); updateBtn();
+  }
+  function pick(a){ amount = a; renderGrid(); updateBtn(); }
+  function pickCustom(v){
+    if(!v) return;
+    amount = Math.max(1, parseInt(v,10)||0);
+    document.querySelectorAll('.amt-btn').forEach(function(b){b.classList.remove('sel');});
+    updateBtn();
+  }
+  function updateBtn(){
+    document.getElementById('giveAmt').textContent = '$'+amount;
+    document.getElementById('giveFreq').textContent = freq==='monthly' ? 'a month' : '';
+  }
+  function goDonate(){
+    var sep = DONORBOX_URL.indexOf('?')>-1 ? '&' : '?';
+    window.open(DONORBOX_URL + sep + 'amount='+amount+'&recurring='+(freq==='monthly'), '_blank');
+  }
+  renderGrid(); updateBtn();
+</script>
 </body>
 </html>
