@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voices From the Holy Land — Tell us your answers</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--clay:#AF5320;--clay2:#9a4517;--paper:#F6F1E8;--ink:#211C15;--muted:#6a6256;--faint:#8f8676;--line:rgba(33,28,21,.12);--card:#fff;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  .serif{font-family:'Newsreader',Georgia,serif;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px;}
+
+  header{background:var(--clay);color:var(--paper);padding:38px 0 32px;}
+  header .brand{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+  header .brand .mk{width:40px;height:40px;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center;}
+  header .brand .mk img{width:28px;height:28px;}
+  header .brand b{font:600 16px 'Hanken Grotesk';}
+  header h1{font-size:34px;line-height:1.15;margin:0 0 12px;font-weight:600;}
+  header p{font-size:17px;line-height:1.6;margin:0;max-width:34em;opacity:.94;}
+
+  .how{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:26px 0 8px;}
+  .how h3{margin:0 0 10px;font:700 13px 'Hanken Grotesk';letter-spacing:.12em;text-transform:uppercase;color:var(--clay);}
+  .how ol{margin:0;padding-left:20px;}
+  .how li{font-size:16px;line-height:1.7;margin-bottom:6px;}
+  .tip{font-size:14.5px;color:var(--muted);margin-top:12px;line-height:1.6;}
+  #unsupported{display:none;background:#fff5ec;border:1px solid var(--clay);border-radius:12px;padding:16px 18px;margin-top:16px;font-size:15px;line-height:1.6;}
+
+  .progress{position:sticky;top:0;z-index:20;background:var(--paper);padding:14px 0 10px;border-bottom:1px solid var(--line);}
+  .pbar{height:8px;background:#e7dfd1;border-radius:6px;overflow:hidden;}
+  .pfill{height:100%;width:0;background:var(--clay);transition:width .3s ease;}
+  .pcount{font-size:13.5px;color:var(--muted);margin-top:8px;font-weight:600;}
+
+  section.grp{margin:30px 0 0;}
+  section.grp > h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);font-weight:700;border-bottom:2px solid var(--clay);padding-bottom:8px;margin:0 0 4px;}
+
+  .q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;margin-top:16px;}
+  .q .num{font:700 13px 'Hanken Grotesk';color:var(--clay);}
+  .q .qt{font-size:18px;line-height:1.45;margin:4px 0 4px;font-weight:600;}
+  .q .help{font-size:14px;color:var(--muted);margin:0 0 12px;line-height:1.5;}
+  .q textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:400 16px 'Hanken Grotesk';color:var(--ink);background:#fdfbf7;resize:vertical;outline:none;line-height:1.55;}
+  .q textarea:focus{border-color:var(--clay);}
+  .row{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap;}
+  .mic{display:inline-flex;align-items:center;gap:9px;background:var(--clay);color:#fff;border:none;border-radius:24px;padding:12px 20px;font:700 15px 'Hanken Grotesk';cursor:pointer;transition:background .15s ease;}
+  .mic:hover{background:var(--clay2);}
+  .mic.rec{background:#b0202a;animation:pulse 1.2s infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(176,32,42,.5);}50%{box-shadow:0 0 0 10px rgba(176,32,42,0);}}
+  .mic svg{width:18px;height:18px;}
+  .saved{font-size:13px;color:#3d7a3d;font-weight:600;opacity:0;transition:opacity .2s;}
+  .saved.on{opacity:1;}
+  .clearb{background:none;border:none;color:var(--faint);font:600 13px 'Hanken Grotesk';cursor:pointer;text-decoration:underline;}
+
+  .finish{margin:36px 0 12px;text-align:center;}
+  .bigsend{background:var(--clay);color:#fff;border:none;border-radius:30px;padding:18px 40px;font:700 19px 'Hanken Grotesk';cursor:pointer;box-shadow:0 12px 30px rgba(175,83,32,.32);}
+  .bigsend:hover{background:var(--clay2);}
+  #out{display:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0 40px;}
+  #out h3{margin:0 0 10px;font-size:20px;}
+  #out p{font-size:15px;color:var(--muted);line-height:1.6;margin:0 0 14px;}
+  #out textarea{width:100%;min-height:200px;border:1px solid var(--line);border-radius:10px;padding:12px;font:400 14px 'Hanken Grotesk';background:#fdfbf7;}
+  .obtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .obtns button{border:none;border-radius:22px;padding:12px 20px;font:700 14px 'Hanken Grotesk';cursor:pointer;}
+  .b-primary{background:var(--clay);color:#fff;}
+  .b-ghost{background:#fff;color:var(--clay);border:1px solid var(--clay)!important;}
+  footer{padding:20px 0 40px;text-align:center;color:var(--faint);font-size:13px;}
+  @media(max-width:560px){header h1{font-size:27px;}.q .qt{font-size:17px;}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <div class="brand"><span class="mk"><img src="assets/logo.svg" alt=""></span><b>Voices From the Holy Land</b></div>
+  <h1 class="serif">Tell us your answers, just talk</h1>
+  <p>To finish your new website assistant, we need a few answers. You do not have to type. Tap <b>Speak</b> on any question and say your answer out loud, the words appear as text you can fix. When you are done, tap <b>Send</b>.</p>
+</div></header>
+
+<div class="wrap">
+  <div class="how">
+    <h3>How this works</h3>
+    <ol>
+      <li>Tap the green <b>Speak</b> button under a question.</li>
+      <li>Allow the microphone if your browser asks (one time).</li>
+      <li>Talk normally. Tap <b>Stop</b> when finished with that answer.</li>
+      <li>Skip anything you are unsure of. Your progress saves automatically.</li>
+      <li>At the bottom, tap <b>Send my answers</b>.</li>
+    </ol>
+    <p class="tip"><b>On a phone?</b> You can also tap the little microphone on your keyboard to talk into any box. <b>Best on Google Chrome</b> on a computer or Android.</p>
+    <div id="unsupported">Your current browser does not support tap-to-talk buttons. No problem: you can still type, or tap the microphone key on your phone's keyboard to dictate into each box. For the smoothest experience, open this page in <b>Google Chrome</b>.</div>
+  </div>
+
+  <div class="progress">
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+    <div class="pcount" id="pcount">0 of 0 answered</div>
+  </div>
+
+  <div id="form"></div>
+
+  <div class="finish">
+    <button class="bigsend" id="sendBtn">Send my answers &rarr;</button>
+  </div>
+
+  <div id="out">
+    <h3 class="serif">Almost done</h3>
+    <p>Your answers are copied and ready. Tap <b>Email to Sthenos</b> to send them (your mail app opens, just hit send). If that does not open, tap <b>Copy</b> or <b>Download</b> and email the text to <b>suleman@sthenostechnologies.com</b>.</p>
+    <textarea id="outText" readonly></textarea>
+    <div class="obtns">
+      <button class="b-primary" id="emailBtn">Email to Sthenos</button>
+      <button class="b-ghost" id="copyBtn">Copy all</button>
+      <button class="b-ghost" id="dlBtn">Download</button>
+    </div>
+  </div>
+</div>
+
+<footer>Voices From the Holy Land &middot; prepared by Sthenos Technologies</footer>
+
+<script>
+var RECIPIENT = "suleman@sthenostechnologies.com";
+var QUESTIONS = [
+ {s:"Legal & financial"},
+ {q:"Is VFHL a registered 501(c)(3), or do you operate under a fiscal sponsor? What is the legal name, and the EIN if you can share it?"},
+ {q:"Are donations tax-deductible? If yes, how would you like us to word it, and how do you send receipts?"},
+ {q:"What is the mailing address for donations sent by check?"},
+ {q:"Do you already have a donation account such as Donorbox, Givebutter, or PayPal? If yes, what is the link? If no, may we set one up for you?"},
+ {s:"Contact & team"},
+ {q:"What are your official public email addresses, and which one should handle general questions, registration, partnerships, and press?"},
+ {q:"Is there a public phone number you would like listed? (Optional)"},
+ {q:"Should we list a mailing address, or just say the Washington, D.C. region?"},
+ {q:"What are the names and roles of the leaders or steering committee we may list publicly? Or would you prefer to stay anonymous?"},
+ {s:"Salons & registration"},
+ {q:"Please confirm the schedule: third Sunday of each month at 3 p.m. Eastern? Are there any months you take off?"},
+ {q:"What platform do you run the salons on, Zoom webinar, Zoom meeting, or something else?"},
+ {q:"How does someone register today, by email, an Eventbrite page, a Zoom link, or a form? If there is a standing link, please say or paste it."},
+ {q:"Is registration required to attend, or optional?"},
+ {q:"How is the join link delivered to people who register, automatically or by hand?"},
+ {s:"Recordings & video"},
+ {q:"Where are your 70-plus recordings hosted, Vimeo, YouTube, or the recordings page on your site?"},
+ {q:"What are the public channel links we can use to show and link the videos?"},
+ {q:"Are all recordings public, or are some members-only?"},
+ {s:"Coalition & partners"},
+ {q:"Can you share the full list of partner organizations we may display and credit?"},
+ {q:"What is the process and the benefits for a new partner organization to join?"},
+ {q:"May we display partner logos on the site?"},
+ {s:"Films"},
+ {q:"How are the films chosen each month, and can the public suggest a film?"},
+ {q:"Are there any licensing notes we should reflect on the site?"},
+ {s:"Social & communications"},
+ {q:"What are all your social media handles? We have Facebook, do you also have YouTube, Instagram, or X?"},
+ {q:"Do you use Mailchimp or another service for a newsletter? If so, what is the signup link, so we can add an email signup box?"},
+ {s:"History & facts"},
+ {q:"When did the film series begin, and when did the online salons start? Who founded it, and what are the key milestones?"},
+ {q:"Exactly how many salons have you held to date? We currently say 70-plus."},
+ {q:"Exactly how many partner organizations are there? We currently say 100-plus."},
+ {q:"In one sentence, how would you describe your reach, local, national, or global online?"},
+ {s:"Accessibility & policies"},
+ {q:"Are all salons captioned? Are any offered in languages besides English?"},
+ {q:"Do you have a code of conduct or ground rules you would like us to publish? If so, please read it or send it."},
+ {q:"Is there anything you would like us to say about how you handle people's registration information, for a short privacy note?"},
+ {s:"For the assistant"},
+ {q:"What questions do visitors ask you most often? Say as many as you can, we will add them word for word."},
+ {q:"Are there any topics you do NOT want the assistant to answer, or that it should hand off to a person?"},
+ {q:"For sensitive or political questions, is there a tone or wording you prefer the assistant to use?"},
+ {s:"Photos & logo (you can describe these, then email the files)"},
+ {q:"Do you have a few real event or salon photos we may use? Describe them here, and email the files when you can."},
+ {q:"Do you have one or two short impact stories, a sentence from someone changed by a salon?"},
+ {q:"Do you have a high-resolution logo? If so, please email it. You are also welcome to keep the new one we designed."}
+];
+
+var form=document.getElementById('form');
+var fields=[]; // textareas
+var qIndex=0;
+QUESTIONS.forEach(function(item){
+  if(item.s){
+    var sec=document.createElement('section'); sec.className='grp';
+    var h=document.createElement('h2'); h.textContent=item.s; sec.appendChild(h);
+    form.appendChild(sec);
+    form._cur=sec;
+  } else {
+    qIndex++;
+    var idx=qIndex;
+    var box=document.createElement('div'); box.className='q';
+    box.innerHTML='<div class="num">Question '+idx+'</div><div class="qt">'+item.q+'</div>';
+    var ta=document.createElement('textarea'); ta.id='a'+idx; ta.setAttribute('aria-label','Answer '+idx);
+    box.appendChild(ta);
+    var row=document.createElement('div'); row.className='row';
+    var mic=document.createElement('button'); mic.className='mic'; mic.type='button';
+    mic.innerHTML="<svg viewBox='0 0 24 24' fill='#fff'><path d='M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z'/><path d='M19 11a7 7 0 0 1-14 0H3a9 9 0 0 0 8 8.94V23h2v-3.06A9 9 0 0 0 21 11h-2z'/></svg><span>Speak</span>";
+    var clr=document.createElement('button'); clr.className='clearb'; clr.type='button'; clr.textContent='Clear';
+    var saved=document.createElement('span'); saved.className='saved'; saved.textContent='Saved';
+    row.appendChild(mic); row.appendChild(clr); row.appendChild(saved);
+    box.appendChild(row);
+    (form._cur||form).appendChild(box);
+    fields.push(ta);
+    ta.addEventListener('input',function(){ persist(); flash(saved); updateProgress(); });
+    clr.addEventListener('click',function(){ ta.value=''; persist(); updateProgress(); ta.focus(); });
+    mic._target=ta; mic._saved=saved;
+    mic.addEventListener('click',function(){ toggleMic(mic); });
+  }
+});
+
+/* ---- localStorage autosave ---- */
+var KEY='vfhl_q_answers';
+function persist(){ var d={}; fields.forEach(function(t){ if(t.value.trim()) d[t.id]=t.value; }); try{localStorage.setItem(KEY,JSON.stringify(d));}catch(e){} }
+function restore(){ try{var d=JSON.parse(localStorage.getItem(KEY)||'{}'); fields.forEach(function(t){ if(d[t.id]) t.value=d[t.id]; });}catch(e){} }
+function flash(el){ el.classList.add('on'); setTimeout(function(){el.classList.remove('on');},900); }
+function updateProgress(){
+  var done=fields.filter(function(t){return t.value.trim();}).length;
+  document.getElementById('pfill').style.width=(done/fields.length*100)+'%';
+  document.getElementById('pcount').textContent=done+' of '+fields.length+' answered';
+}
+restore(); updateProgress();
+
+/* ---- Speech recognition ---- */
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+var rec=null, activeMic=null;
+if(!SR){ document.getElementById('unsupported').style.display='block'; }
+
+function toggleMic(mic){
+  if(!SR) { mic._target.focus(); return; }
+  if(activeMic===mic){ stopMic(); return; }
+  if(activeMic) stopMic();
+  startMic(mic);
+}
+function startMic(mic){
+  rec=new SR(); rec.continuous=true; rec.interimResults=true; rec.lang='en-US';
+  var ta=mic._target; var base=ta.value?ta.value.replace(/\s+$/,'')+' ':''; var finalTxt='';
+  rec.onresult=function(e){
+    var interim='';
+    for(var i=e.resultIndex;i<e.results.length;i++){
+      var tr=e.results[i][0].transcript;
+      if(e.results[i].isFinal){ finalTxt+=tr+' '; } else { interim+=tr; }
+    }
+    ta.value=base+finalTxt+interim;
+    updateProgress();
+  };
+  rec.onerror=function(e){
+    if(e.error==='not-allowed'||e.error==='service-not-allowed'){ alert('Please allow microphone access in your browser, then tap Speak again.'); }
+    stopMic();
+  };
+  rec.onend=function(){ if(activeMic===mic){ persist(); flash(mic._saved); stopMic(); } };
+  try{ rec.start(); activeMic=mic; mic.classList.add('rec'); mic.querySelector('span').textContent='Stop'; ta.focus(); }
+  catch(err){ /* already started */ }
+}
+function stopMic(){
+  if(rec){ try{rec.stop();}catch(e){} rec=null; }
+  if(activeMic){ activeMic.classList.remove('rec'); activeMic.querySelector('span').textContent='Speak'; persist(); }
+  activeMic=null;
+}
+
+/* ---- Compile & send ---- */
+function compile(){
+  var lines=['Voices From the Holy Land — Assistant answers',''];
+  var n=0;
+  QUESTIONS.forEach(function(item){
+    if(item.s){ lines.push(''); lines.push('== '+item.s+' =='); }
+    else { n++; var v=(document.getElementById('a'+n).value||'').trim();
+      lines.push(n+'. '+item.q); lines.push('   '+(v||'(not answered)')); lines.push(''); }
+  });
+  return lines.join('\n');
+}
+var out=document.getElementById('out'), outText=document.getElementById('outText');
+document.getElementById('sendBtn').addEventListener('click',function(){
+  stopMic();
+  var txt=compile(); outText.value=txt;
+  out.style.display='block'; out.scrollIntoView({behavior:'smooth'});
+  try{ navigator.clipboard.writeText(txt); }catch(e){}
+});
+document.getElementById('emailBtn').addEventListener('click',function(){
+  var subj=encodeURIComponent('VFHL Assistant Answers');
+  var body=encodeURIComponent(outText.value);
+  window.location.href='mailto:'+RECIPIENT+'?subject='+subj+'&body='+body;
+});
+document.getElementById('copyBtn').addEventListener('click',function(){
+  outText.select(); try{navigator.clipboard.writeText(outText.value);}catch(e){document.execCommand('copy');}
+  this.textContent='Copied!'; var b=this; setTimeout(function(){b.textContent='Copy all';},1500);
+});
+document.getElementById('dlBtn').addEventListener('click',function(){
+  var blob=new Blob([outText.value],{type:'text/plain'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='VFHL-answers.txt'; a.click();
+});
+window.addEventListener('beforeunload',persist);
+</script>
+</body>
+</html>
